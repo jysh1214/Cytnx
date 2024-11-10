@@ -1,0 +1,110 @@
+{
+    "version": 6,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 25,
+        "patch": 0
+    },
+    "buildPresets": [
+        {
+            "name": "default",
+            "configurePreset": "default"
+        },
+        {
+            "name": "cuda",
+            "configurePreset": "cuda",
+            "jobs": 8
+        },
+        {
+            "name": "cuda-clang",
+            "configurePreset": "cuda-clang"
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "default",
+            "configurePreset": "default",
+            "output": {
+                "outputOnFailure": true,
+                "verbosity": "verbose"
+            }
+        },
+        {
+            "name": "cuda",
+            "description": "",
+            "displayName": "cuda",
+            "configurePreset": "cuda",
+            "inherits": [
+                "default"
+            ]
+        }
+    ],
+    "configurePresets": [
+        {
+            "name": "default",
+            "displayName": "default",
+            "description": "default",
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
+                "CMAKE_INSTALL_PREFIX": "/home/ivanac/libcytnx",
+                "USE_MKL": "ON",
+                "BUILD_PYTHON": "ON",
+                "BACKEND_TORCH": "OFF",
+                "USE_HPTT": "OFF",
+                "HPTT_ENABLE_FINE_TUNE": "OFF",
+                "USE_CUDA": "ON",
+                "USE_CUTT": "OFF",
+                "CUTT_ENABLE_FINE_TUNE": "OFF",
+                "USE_MAGMA": "OFF",
+                "USE_CUTENSOR": "ON",
+                "CUTENSOR_ROOT": "/home/ivanac/libcutensor-linux-x86_64-2.0.2.5",
+                "USE_CUQUANTUM": "ON",
+                "CUQUANTUM_ROOT": "/home/ivanac/cuquantum-linux-x86_64-24.08.0.5_cuda12",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "1",
+                "USE_OMP": "OFF",
+                "RUN_TESTS": "OFF",
+                "USE_DEBUG": "OFF",
+                "CMAKE_CUDA_HOST_COMPILER": "/home/ivanac/anaconda3/envs/cytnx/bin/x86_64-conda-linux-gnu-g++"
+            }
+        },
+        {
+            "name": "cuda",
+            "displayName": "cuda",
+            "description": "cuda",
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "inherits": "default",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "USE_MKL": "ON",
+                "BUILD_PYTHON": "ON",
+                "USE_CUDA": "ON",
+                "USE_CUTENSOR": "ON",
+                "CUTENSOR_ROOT": "/home/ivanac/libcutensor-linux-x86_64-2.0.2.5",
+                "USE_CUQUANTUM": "ON",
+                "CUQUANTUM_ROOT": "/home/ivanac/cuquantum-linux-x86_64-24.08.0.5_cuda12",
+                "RUN_TESTS": "ON",
+                "USE_DEBUG": "ON"
+            }
+        },
+        {
+            "name": "cuda-clang",
+            "displayName": "cuda-clang",
+            "description": "cuda-clang",
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "inherits": "default",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "DEBUG",
+                "USE_MKL": "OFF",
+                "BUILD_PYTHON": "ON",
+                "USE_CUDA": "ON",
+                "USE_CUTENSOR": "ON",
+                "CUTENSOR_ROOT": "/home/ivanac/libcutensor-linux-x86_64-2.0.2.5",
+                "USE_CUQUANTUM": "ON",
+                "CUQUANTUM_ROOT": "/home/ivanac/cuquantum-linux-x86_64-24.08.0.5_cuda12",
+                "RUN_TESTS": "ON",
+                "USE_DEBUG": "ON"
+            }
+        }
+    ]
+}

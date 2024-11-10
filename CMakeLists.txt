@@ -89,11 +89,23 @@ option(USE_CUTENSOR "Build Cytnx with CuTensor (requires CUDA)" ON)
 option(USE_CUQUANTUM "Build Cytnx with CUQuantum (requires CUDA)" ON)
 
 option(DEV_MODE "Build testing dev_test.cpp with cytnx" OFF)
-
 # #####################################################################
 # ## PROJECT
 # #####################################################################
+message(STATUS "CMAKE_BUILD_TYPE: ${CMAKE_BUILD_TYPE}")
 project(CYTNX VERSION ${CYTNX_VERSION} LANGUAGES CXX C)
+#  CMAKE_CXX_FLAGS is initialized after enable the language
+message(STATUS "CMAKE_CXX_FLAGS: ${CMAKE_CXX_FLAGS}")
+message(STATUS "CMAKE_BUILD_TYPE: ${CMAKE_BUILD_TYPE}")
+
+if(USE_CUDA)
+  enable_language(CUDA)
+  # disable "--option-file" in the output command in compile_command.json to make vscode cpptool find the include file
+  # refer to: https://discourse.cmake.org/t/cmake-target-include-directories-doesnt-export-to-compile-commands-json-when-using-cuda/10072/9
+  set(CMAKE_CUDA_USE_RESPONSE_FILE_FOR_INCLUDES 0)
+  set(CMAKE_CUDA_USE_RESPONSE_FILE_FOR_LIBRARIES 0)
+  set(CMAKE_CUDA_USE_RESPONSE_FILE_FOR_OBJECTS 0)
+endif()
 
 add_library(cytnx STATIC)
 set_property(TARGET cytnx PROPERTY C_VISIBILITY_PRESET hidden)
@@ -134,7 +146,8 @@ if(USE_DEBUG)
   target_compile_definitions(cytnx PUBLIC UNI_DEBUG)
 
   # Remember to add export ASAN_OPTIONS=protect_shadow_gap=0 in Install.sh
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=address")
+  # -Og is recommended by g++ for debugging
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=address -Og")
 endif()
 
 if(RUN_TESTS)
