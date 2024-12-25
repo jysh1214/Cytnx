@@ -1,0 +1,4 @@
+linalg_Test.gpu_BkUt_Svd_truncate3
+linalg_Test.gpu_BkUt_expM
+Svd.gpu_U1_zeros_test
+Lanczos_Gnd.gpu_Bk_Lanczos_Gnd_test
