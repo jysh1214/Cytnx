@@ -389,21 +389,6 @@ namespace cytnx {
       Pow_ii[Type.Float] = Pow_internal_f;
 
       //=====================
-      Abs_ii = vector<Absfunc_oii>(N_Type);
-
-      Abs_ii[Type.ComplexDouble] = Abs_internal_cd;
-      Abs_ii[Type.ComplexFloat] = Abs_internal_cf;
-      Abs_ii[Type.Double] = Abs_internal_d;
-      Abs_ii[Type.Float] = Abs_internal_f;
-      Abs_ii[Type.Int64] = Abs_internal_i64;
-      Abs_ii[Type.Uint64] = Abs_internal_pass;
-      Abs_ii[Type.Int32] = Abs_internal_i32;
-      Abs_ii[Type.Uint32] = Abs_internal_pass;
-      Abs_ii[Type.Int16] = Abs_internal_i16;
-      Abs_ii[Type.Uint16] = Abs_internal_pass;
-      Abs_ii[Type.Bool] = Abs_internal_pass;
-
-      //=====================
       Diag_ii = vector<Diagfunc_oii>(N_Type);
 
       Diag_ii[Type.ComplexDouble] = Diag_internal_cd;
@@ -846,11 +831,11 @@ namespace cytnx {
       cuAbs_ii[Type.Double] = cuAbs_internal_d;
       cuAbs_ii[Type.Float] = cuAbs_internal_f;
       cuAbs_ii[Type.Int64] = cuAbs_internal_i64;
-      cuAbs_ii[Type.Uint64] = cuAbs_internal_pass;
+      cuAbs_ii[Type.Uint64] = cuAbs_internal_u64;
       cuAbs_ii[Type.Int32] = cuAbs_internal_i32;
-      cuAbs_ii[Type.Uint32] = cuAbs_internal_pass;
+      cuAbs_ii[Type.Uint32] = cuAbs_internal_u32;
       cuAbs_ii[Type.Int16] = cuAbs_internal_i16;
-      cuAbs_ii[Type.Uint16] = cuAbs_internal_pass;
+      cuAbs_ii[Type.Uint16] = cuAbs_internal_u16;
       cuAbs_ii[Type.Bool] = cuAbs_internal_pass;
 
       //===============
